@@ -1,0 +1,14 @@
+# Sample client certificates and keys
+
+Replace ca.crt with your own client certificate authority to verify and sign client certificates. 
+May be you already using one for your organization, then just copy the ca.crt in this directory.
+
+### user.pfx is a sample client certificate that will authenticate you if you install it in your browser
+with sample ca.crt.
+
+# IMPORTANT
+
+Do not leave the sample ca.crt in this directory, replace it with your own!
+
+There are pleanty of instructions how ssl client certificate authentication works. Here is just one of them:
+* https://www.makethenmakeinstall.com/2014/05/ssl-client-authentication-step-by-step/
