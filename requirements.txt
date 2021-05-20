@@ -1,0 +1,9 @@
+flask
+python-dotenv
+requests[socks]
+toolz>=0.8.0
+Flask-Script
+redis
+base58
+gunicorn
+rq

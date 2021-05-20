@@ -115,3 +115,6 @@ coverage*
 
 # Local settings file
 .env
+
+# not sure what that is, let's ignore it anyway :)
+.travis.yml

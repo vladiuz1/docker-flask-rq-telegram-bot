@@ -1,54 +1,13 @@
 version: "3"
 services:
-  web:
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    restart: always
-    expose:
-      - 5001
-    depends_on:
-      - redis
-  worker:
-    build:
-      context: celery-queue
-      dockerfile: Dockerfile
-    depends_on:
-      - redis
-  monitor:
-    build:
-      context: celery-queue
-      dockerfile: Dockerfile
-    expose:
-      - 5555
-    entrypoint: flower
-    command:  -A tasks --port=5555 --broker=redis://redis:6379/0
-    depends_on:
-      - redis
-  nginx:
-    build: ./nginx
+  fr-web:
+    build: .
     ports:
-      - 80:80
-      - 443:443
-    depends_on:
-      - web
-      - monitor
-      - worker
+      - "127.0.0.1:5000:80"
     volumes:
-      - ./data/client_certs:/etc/nginx/client_certs
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-    env_file:
-      - ./.env
-  certbot:
-    image: certbot/certbot
-    restart: unless-stopped #+++
-    volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-    env_file:
-      - ./.env
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-  redis:
+      - .:/app
+    environment:
+      FLASK_ENV: production
+    command: ["gunicorn", "--bind=0.0.0.0:80", "app:app"]
+  fr-redis:
     image: redis
