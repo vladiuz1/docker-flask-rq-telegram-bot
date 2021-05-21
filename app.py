@@ -42,7 +42,7 @@ def notify_and_update_block_count(msg, block):
     if r.get('ok') and block > get_latest_block():
         set_latest_block(block)
 
-@scheduler.scheduled_job(name="Check Token Transfers", trigger="interval", seconds = 20)
+@scheduler.scheduled_job(name="Check Token Transfers", trigger="interval", seconds = 40)
 def etherscan_get_token_transfers(address = '0x63120ccd7b415743e8753afd167f5ad4a1732c43', topic0 = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'):
     data = {
         'module': 'logs',
