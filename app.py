@@ -18,10 +18,10 @@ queue = rq.Queue(connection=Redis(host='fr-redis'))
 def get_latest_block(default = False):
     if default:
         return 12471299
-    latest_block = int(redis.get('latest_block'))
+    latest_block = redis.get('latest_block')
     if not latest_block:
         latest_block = 12471299
-    return latest_block
+    return int(latest_block)
 
 def set_latest_block(block):
     redis.set('latest_block', block)

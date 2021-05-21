@@ -29,4 +29,12 @@ after you got the id.
 
 you will need etherscan API key. Its free.
 
+once done, just use:
 
+```
+docker-compose up -d
+```
+
+You can essentially use this for anythning.. pull a web page or api or rss feed, parse it, and message a 
+group... many uses. really easy to deploy. but need to understnad
+flask, rq, redis a bit.. not that hard.
