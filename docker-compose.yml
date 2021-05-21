@@ -9,5 +9,10 @@ services:
     environment:
       FLASK_ENV: production
     command: ["gunicorn", "--bind=0.0.0.0:80", "app:app"]
+  fr-rq-worker:
+    build: .
+    volumes:
+      - .:/app
+    command: ["rq", "worker", "-s", "-u", "redis://fr-redis:6379/0"]
   fr-redis:
     image: redis

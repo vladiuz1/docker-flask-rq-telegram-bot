@@ -7,3 +7,6 @@ redis
 base58
 gunicorn
 rq
+Flask-RQ2[cli]
+APScheduler
+web3

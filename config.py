@@ -16,6 +16,13 @@ class Default:
     """Base config."""
     SECRET_KEY = environ.get('SECRET_KEY','This secret must change')
     SESSION_COOKIE_NAME = environ.get('SESSION_COOKIE_NAME','flask-cookie-session-name')
+    DISCORD_API_TOKEN=environ.get('DISCORD_API_TOKEN')
+    DISCORD_APP_ID=environ.get('DISCORD_APP_ID')
+    DISCORD_APP_PUBKEY=environ.get('DISCORD_APP_PUBKEY')
+    TELEGRAM_API_KEY=environ.get('TELEGRAM_API_KEY')
+    TELEGRAM_CHAT_ID=int(environ.get('TELEGRAM_CHAT_ID',-1))
+    ETHERSCAN_API_KEY=environ.get('ETHERSCAN_API_KEY')
+    RQ_REDIS_URL="redis://fr-redis:6379/0"
     STATIC_FOLDER = 'static'
     TEMPLATES_FOLDER = 'templates'
     TESTING = True
